@@ -10,23 +10,27 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var currentValue: Int = 50
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
     @IBAction func showAlert() {
-        let alert = UIAlertController(title: "Hello world", message: "This is a lorem ipsum", preferredStyle: .alert)
+        let messageInAlert = "The Slider value is \(currentValue)"
+        let alert = UIAlertController(title: "Hello world", message: messageInAlert, preferredStyle: .alert)
         let action = UIAlertAction(title: "Awesome", style: .default , handler: nil)
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func whoisthere() {
-        let alert = UIAlertController(title: "YEEES?", message: "WHO IS THERE?", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Me", style: .destructive, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
+    @IBAction func sliderMoved(_ slider: UISlider) {
+        let roundedValue = slider.value.rounded()
+        print("The Slider value is \(slider.value) and the rounded is \(roundedValue)")
+        // currentValue = Int(slider.value)
+        currentValue = Int(roundedValue)
     }
+    
 }
 
