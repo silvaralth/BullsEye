@@ -12,6 +12,7 @@ class ViewController: UIViewController {
 
     var currentValue: Int = 0
     var targetValue: Int = 0
+    var diference: Int = 0
     
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var targetLabel: UILabel!
@@ -24,7 +25,8 @@ class ViewController: UIViewController {
     }
 
     @IBAction func showAlert() {
-        let messageInAlert = "Your slider value is \(currentValue)" + "\nThe target was \(targetValue)"
+        calcDiferecnce()
+        let messageInAlert = "Your slider value is \(currentValue)" + "\nThe target was \(targetValue)" + ", the diference is \(diference)"
         let alert = UIAlertController(title: "Hello world", message: messageInAlert, preferredStyle: .alert)
         let action = UIAlertAction(title: "Awesome", style: .default , handler: nil)
         alert.addAction(action)
@@ -43,6 +45,15 @@ class ViewController: UIViewController {
         currentValue = 50
         slider.value = Float(currentValue)
         updateLabels()
+    }
+    
+    func calcDiferecnce() {
+        if (targetValue > currentValue) {
+            diference = targetValue - currentValue
+        }
+        if (targetValue < currentValue) {
+            diference = currentValue - targetValue
+        }
     }
     
     func updateLabels() {
